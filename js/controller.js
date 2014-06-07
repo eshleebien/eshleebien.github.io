@@ -12,6 +12,10 @@ function ContentController($scope,$http,$sce) {
   $scope.selectPlace = function(place) {
     $scope.location = place;
     $scope.location.map = new google.maps.LatLng(place.location.lat,place.location.lng);
+
+    setInterval(function() {
+      $scope.initialize($scope.location)
+    },120000);
     $scope.initialize($scope.location);
   }
 
@@ -29,6 +33,13 @@ function ContentController($scope,$http,$sce) {
     $http({method: 'GET', url: 'http://54.214.176.172/police/messages'})
     .success(function(data) {
       $scope.users = data;
+
+      $scope.users.push({ "name" : "rvbulalacao", "mobile_number" : "9163303420", 
+                  "mobile_contacts" : [  "09163303420",  "09175247735" ], "email_contacts" : [  "" ], 
+                  "severity" : true, "email_message" : "Patulong naman", 
+                  "text_message" : "Help! Help!", "location" : { "lat" : "14.5859508", "lng" : "121.1203181" }, 
+                  "timestamp" : "Sat Jun 07 2014 01:46:47 GMT+0000 (UTC)"});
+
       angular.forEach($scope.police,function(pol) {
         var pos = new google.maps.LatLng(pol.location.lat,pol.location.lng)
           , message = pol.precinct_name+"<br>"+
@@ -73,60 +84,5 @@ function ContentController($scope,$http,$sce) {
 
       });
     });
-
-    
-
-
-
-
   }
 }
-
-function bound(value, opt_min, opt_max) {
-  if (opt_min != null) value = Math.max(value, opt_min);
-  if (opt_max != null) value = Math.min(value, opt_max);
-  return value;
-}
-
-function degreesToRadians(deg) {
-  return deg * (Math.PI / 180);
-}
-
-function radiansToDegrees(rad) {
-  return rad / (Math.PI / 180);
-}
-
-/** @constructor */
-function MercatorProjection() {
-  this.pixelOrigin_ = new google.maps.Point(TILE_SIZE / 2,
-      TILE_SIZE / 2);
-  this.pixelsPerLonDegree_ = TILE_SIZE / 360;
-  this.pixelsPerLonRadian_ = TILE_SIZE / (2 * Math.PI);
-}
-
-MercatorProjection.prototype.fromLatLngToPoint = function(latLng,
-    opt_point) {
-  var me = this;
-  var point = opt_point || new google.maps.Point(0, 0);
-  var origin = me.pixelOrigin_;
-
-  point.x = origin.x + latLng.lng() * me.pixelsPerLonDegree_;
-
-  // Truncating to 0.9999 effectively limits latitude to 89.189. This is
-  // about a third of a tile past the edge of the world tile.
-  var siny = bound(Math.sin(degreesToRadians(latLng.lat())), -0.9999,
-      0.9999);
-  point.y = origin.y + 0.5 * Math.log((1 + siny) / (1 - siny)) *
-      -me.pixelsPerLonRadian_;
-  return point;
-};
-
-MercatorProjection.prototype.fromPointToLatLng = function(point) {
-  var me = this;
-  var origin = me.pixelOrigin_;
-  var lng = (point.x - origin.x) / me.pixelsPerLonDegree_;
-  var latRadians = (point.y - origin.y) / -me.pixelsPerLonRadian_;
-  var lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) -
-      Math.PI / 2);
-  return new google.maps.LatLng(lat, lng);
-};

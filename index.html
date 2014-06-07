@@ -18,7 +18,7 @@
     <div id="wrapper" ng-controller = "ContentController">
       <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
-            <li class="sidebar-brand"><a href="#"><b>Precint List</b></a></li>
+            <li class="sidebar-brand"><a href="#"><b>List of Cities</b></a></li>
             <li ng-repeat ="place in places"><a href="javascript:" ng-click="selectPlace(place)">{{place.city}}</a></li>
             <li><img src="css/icon.jpg" width="150"/></li>
           </ul>
@@ -28,7 +28,12 @@
               <div class="container">
                   <div class="row">
                       <div class="col-md-12" ng-show = "place">
-                          <h1><img src="css/shakecast_v2.png" width="400" /></h1>
+                          <h1 class="pull-left"><img src="css/shakecast_v2.png" width="400" /></h1>
+                          <div class="">
+                            <br><br><br>
+                            *To use ShakeCast, register by texting INFO to 1150. Then, download the app at Google Play Store.<br>
+                            *This Web Portal serves as a tracker for distress calls in the cities listed on the sidebar.
+                          </div>
                           <div id = "map-canvas"></div>
                       </div>
                   </div>
