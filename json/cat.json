@@ -1,0 +1,51 @@
+[
+	{
+		"city":"Mandaluyong",
+		"location":{"lat":14.5843854,"lng":121.0384742},
+		"data": [
+			{
+				"contact_number":["9268339986","9059599096"],
+				"location":{"lat":14.5843854,"lng":121.0384742},
+				"precinct_name":"Eastern Police District Station 3"
+			}
+		]
+	},
+	{
+		"city":"Makati",
+		"location":{"lat":14.5546007,"lng":121.0331609},
+		"data":[
+			{
+				"contact_number":["9268339986","9059599096"],
+				"location":{"lat":14.568442,"lng":121.026455},
+				"precinct_name":"Southern Police District Station 2"
+			}
+		]
+	},
+	{
+		"city":"Quezon City",
+		"location":{"lat":14.6839606,"lng":121.0621594},
+		"data": [
+			{
+				"contact_number":["9268339986","9059599096"],
+				"location":{"lat":14.6716723,"lng":121.0250805},
+				"precinct_name":"QUEZON CITY POLICE STATION"
+			},
+			{
+				"contact_number":["9268339986","9059599096"],
+				"location":{"lat":14.6746723,"lng":121.0290805},
+				"precinct_name":"Quezon City Police District Police Station 9"
+			}
+		]
+	},
+	{
+		"city":"Caloocan",
+		"location":{"lat":14.711246,"lng":121.0297948},
+		"data": [
+			{
+				"contact_number":["9268339986","9059599096"],
+				"location":{"lat":14.6716723,"lng":121.0250805},
+				"precinct_name":"SUB-STATION IV"
+			}
+		]
+	}
+]
